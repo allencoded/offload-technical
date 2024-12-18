@@ -1,0 +1,22 @@
+{
+  "trucks": [
+    {
+      "id": 1,
+      "unitNumber": 12345,
+      "driver": "John Doe",
+      "status": "Unscheduled"
+    },
+    {
+      "id": 2,
+      "unitNumber": "ABC123",
+      "driver": "Jane Smith",
+      "status": "In-Transit"
+    },
+    {
+      "id": 3,
+      "unitNumber": 67890,
+      "driver": "Bob Johnson",
+      "status": "Scheduled"
+    }
+  ]
+}
