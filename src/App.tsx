@@ -1,15 +1,15 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ProjectDashboard } from './modules/projects/Dashboard'
+import { ProjectsDashboard } from './modules/projects'
 
 const queryClient = new QueryClient()
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <div className="App">
-        <ProjectDashboard />
-      </div>
-    </QueryClientProvider>
+    <div className="App">
+      <QueryClientProvider client={queryClient}>
+        <ProjectsDashboard />
+      </QueryClientProvider>
+    </div>
   )
 }
 

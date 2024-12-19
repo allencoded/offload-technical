@@ -6,14 +6,7 @@ export enum TRUCK_STATUS {
   DELAYED = 'delayed',
 }
 
-export interface ITruck {
-  id: number
-  unitNumber: number | string
-  driver: string
-  status: TRUCK_STATUS
-}
-
-enum PROJECT_STATUS {
+export enum PROJECT_STATUS {
   UNPLANNED = 'unplanned',
   IN_PROGRESS = 'in-progress',
   COMPLETED_ON_TIME = 'completed on time',
@@ -25,4 +18,11 @@ export interface IProject {
   name: string
   trucks: ITruck[]
   status: PROJECT_STATUS
+}
+
+export interface ITruck {
+  id: number
+  unitNumber: number | string
+  driver: string
+  status: TRUCK_STATUS
 }

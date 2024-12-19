@@ -1,22 +1,29 @@
 {
-  "trucks": [
+  "projects": [
     {
       "id": 1,
-      "unitNumber": 12345,
-      "driver": "John Doe",
+      "name": "Route 1",
+      "trucks": [
+        {
+          "id": 1,
+          "unitNumber": 12345,
+          "driver": "John Doe",
+          "status": "unscheduled"
+        },
+        {
+          "id": 2,
+          "unitNumber": "ABC123",
+          "driver": "Jane Smith",
+          "status": "delayed"
+        },
+        {
+          "id": 3,
+          "unitNumber": 67890,
+          "driver": "Bob Johnson",
+          "status": "scheduled"
+        }
+      ],
       "status": "Unscheduled"
-    },
-    {
-      "id": 2,
-      "unitNumber": "ABC123",
-      "driver": "Jane Smith",
-      "status": "In-Transit"
-    },
-    {
-      "id": 3,
-      "unitNumber": 67890,
-      "driver": "Bob Johnson",
-      "status": "Scheduled"
     }
   ]
 }
