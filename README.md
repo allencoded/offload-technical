@@ -69,6 +69,8 @@ I created a prototype in Figma as a reference for front-end development. However
 
 [Link to Figma Prototype](https://www.figma.com/proto/wnHyhDsIGE7TErYBP7ClmA/Offload?node-id=0-1&t=cqFqOqM5WaGfhc97-1)
 
+[Link to Figma Design](https://www.figma.com/design/wnHyhDsIGE7TErYBP7ClmA/Offload?node-id=10-1&t=aBBZPB4hrG4vgVKJ-0)
+
 ## Libraries
 
 - `json-server`
