@@ -21,6 +21,7 @@ export default {
         unplanned: {
           DEFAULT: 'hsl(210, 13%, 55%)',
           light: 'hsl(210, 13%, 92%)',
+          lightest: 'hsl(210, 13%, 96%)',
           dark: 'hsl(210, 13%, 20%)',
         },
         analyzing: 'hsl(0, 0%, 92%)',

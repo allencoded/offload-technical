@@ -1,7 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card'
 import { IProject } from '@/data/types'
 import { useResponsive } from '@/hooks/useResponsive'
-import { cn } from '@/lib/utils'
+import { cn } from '@/util/lib/utils'
 import debounce from 'lodash/debounce'
 import { Search } from 'lucide-react'
 import { useMemo, useState } from 'react'
@@ -31,7 +31,7 @@ export const ProjectsDashboard = ({
   )
 
   if (isLoading) {
-    return <SkeletonOverview />
+    return <SkeletonOverview repeatCount={3} />
   }
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +50,7 @@ export const ProjectsDashboard = ({
         isMoreThan(1024) && 'grid-cols-3',
       )}
     >
-      <div className="relative m-6">
+      <div className="relative m-6" hidden={isLoading}>
         <input
           type="text"
           placeholder="Search project..."

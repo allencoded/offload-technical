@@ -1,8 +1,22 @@
 import { Card, CardContent } from '@/components/ui/card'
-import { IProject, ITruck, TRUCK_STATUS } from '@/data/types'
-import { ArrowLeft, Truck } from 'lucide-react'
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import { ArrowLeft } from 'lucide-react'
+import { useParams } from 'react-router-dom'
 
-export const ProjectDetail = ({ trucks, name }: IProject) => {
+export const ProjectDetail = () => {
+  const { projectId } = useParams()
+  console.log('projectId: ', projectId)
+
+  const { data } = useQuery({
+    queryKey: ['projects'],
+    queryFn: async () => {
+      const response = await axios.get('http://localhost:3000/projects')
+      return response.data
+    },
+  })
+  console.log('data: ', data)
+
   return (
     <div className="grid grid-cols-3 gap-8">
       <Card className="col-span-1">
@@ -14,7 +28,7 @@ export const ProjectDetail = ({ trucks, name }: IProject) => {
 
           <div className="space-y-4">
             <div className="p-4 border rounded-lg border-blue-500 bg-blue-50">
-              <h2 className="font-medium">{name}</h2>
+              <h2 className="font-medium">name</h2>
             </div>
           </div>
         </CardContent>
@@ -25,7 +39,7 @@ export const ProjectDetail = ({ trucks, name }: IProject) => {
           <div className="mb-8">
             <div className="flex justify-between items-center mb-6">
               <div>
-                <h2 className="text-2xl font-semibold">{name}</h2>
+                <h2 className="text-2xl font-semibold">Name</h2>
               </div>
               <div className={`px-4 py-2 rounded-full text-white `}>
                 calculateProjectStatus(project.trucks)
@@ -33,7 +47,7 @@ export const ProjectDetail = ({ trucks, name }: IProject) => {
             </div>
 
             <div className="space-y-4">
-              {trucks.map((truck: ITruck) => (
+              {/* {trucks.map((truck: ITruck) => (
                 <div
                   key={truck.id}
                   className="flex items-center justify-between p-4 border rounded-lg"
@@ -75,7 +89,7 @@ export const ProjectDetail = ({ trucks, name }: IProject) => {
                     ))}
                   </select>
                 </div>
-              ))}
+              ))} */}
             </div>
           </div>
         </CardContent>
