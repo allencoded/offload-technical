@@ -7,12 +7,19 @@ import { ProjectsDashboard } from './components/Dashboard'
 import { ErrorEndpoint } from './components/Error'
 
 export const ProjectsList = () => {
-  const { setProjects, projects: sortedProjects } = useProjectStore()
+  const { setProjects } = useProjectStore()
 
   const { isLoading, data, error } = useQuery({
     queryKey: ['projects'],
     queryFn: async () => {
+      const localProjects = localStorage.getItem('projects')
+      if (localProjects) {
+        return JSON.parse(localProjects)
+      }
+
       const response = await axios.get('http://localhost:3000/projects')
+
+      localStorage.setItem('projects', JSON.stringify(response.data))
       return response.data
     },
   })
@@ -28,14 +35,15 @@ export const ProjectsList = () => {
     <>
       <div className="h-[fit-max-content] min-h-screen w-[fit-max-content] bg-unplanned-lightest">
         <div className="flex flex-col z-10 justify-center items-center relative pt-[41px]">
-          <img src="/logo-offload.svg" alt="logo" className="w-1/2 h-auto" />
+          <img
+            src="/logo-offload.svg"
+            alt="logo"
+            className="w-1/2 max-w-[18.75rem] h-auto"
+          />
           {error ? (
             <ErrorEndpoint error={error} />
           ) : (
-            <ProjectsDashboard
-              projects={sortedProjects}
-              isLoading={isLoading}
-            />
+            <ProjectsDashboard isLoading={isLoading} />
           )}
         </div>
       </div>

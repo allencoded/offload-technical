@@ -46,5 +46,33 @@ Bonus Points: Use css add a bit of styling to the project view.
 1. Use `npm install` to install the dependencies
 1. **Start the mock API server:**
    - `npm install -g json-server`
-   - `json-server --watch src/data/mock.json`
+   - `json-server -w db.json -p 3000`
 1. Run the application locally with `npm run dev`
+
+## Scope of the Test Performed
+
+### Mobile First
+
+For this test, I developed a mobile-focused version, with a responsive design for screen sizes between 725px and 375px (referencing Figma at 425px). Due to time constraints, a desktop version was not considered.
+
+### Shadcn
+
+I utilized Shadcn as the design system and implemented loading and error state handling.
+
+### Figma
+
+I created a prototype in Figma as a reference for front-end development. However, due to time limitations, some adjustments were made directly in the code.
+
+[Link to Figma Prototype](https://www.figma.com/proto/wnHyhDsIGE7TErYBP7ClmA/Offload?node-id=0-1&t=cqFqOqM5WaGfhc97-1)
+
+## Libraries
+
+- `json-server`
+- `react-query`
+- `axios`
+
+While not strictly necessary for this specific test, I included these libraries to create a more scalable and robust model. Due to endpoint limitations, I simulated the fetch operation using `json-server` and stored the data in localStorage.
+
+### Zustand
+
+Used for global state management.

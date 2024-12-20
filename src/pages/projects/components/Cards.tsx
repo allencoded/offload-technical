@@ -44,14 +44,15 @@ export const ProjectCard = ({ project }: { project: IProject }) => {
 
         <Separator className="my-2 bg-unplanned-lightest h-[2px]" />
 
-        <div className="flex justify-between items-start mb-3 px-4 pb-4 pt-3">
-          <Link to={`/projects/${project.id}`}>
-            <span className="text-[16px] font-medium text-delayed">
-              View details
-            </span>
-            <ChevronRight className="w-5 h-5 text-delayed" />
-          </Link>
-        </div>
+        <Link
+          to={`/projects/${project.id}`}
+          className="flex justify-between items-start mb-3 px-4 pb-4 pt-3"
+        >
+          <span className="text-[16px] font-medium text-delayed">
+            View details
+          </span>
+          <ChevronRight className="w-5 h-5 text-delayed" />
+        </Link>
       </section>
     )
   }
@@ -91,10 +92,13 @@ export const ProjectCard = ({ project }: { project: IProject }) => {
 
       <Separator className="my-2 bg-unplanned-lightest h-[2px]" />
 
-      <div className="flex justify-between items-start mb-3 px-4 pb-4 pt-3">
+      <Link
+        to={`/projects/${project.id}`}
+        className="flex justify-between items-start mb-3 px-4 pb-4 pt-3"
+      >
         <span className="text-[16px] font-medium">View details</span>
         <ChevronRight className="w-5 h-5" />
-      </div>
+      </Link>
     </section>
   )
 }

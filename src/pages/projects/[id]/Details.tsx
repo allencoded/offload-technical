@@ -1,95 +1,136 @@
 import { Card, CardContent } from '@/components/ui/card'
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
-import { ArrowLeft } from 'lucide-react'
+import { ITruck, TRUCK_STATUS } from '@/data/types'
+import { useProjectStore } from '@/store/useProjectStore'
+import { sortProjects } from '@/util/functions/sortProjects'
+import { cn } from '@/util/lib/utils'
+import { ArrowLeft, Truck } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { Link, useParams } from 'react-router'
 
 export const ProjectDetail = () => {
-  const { data } = useQuery({
-    queryKey: ['projects'],
-    queryFn: async () => {
-      const response = await axios.get('http://localhost:3000/projects')
-      return response.data
-    },
+  const { projectId } = useParams()
+  const { projects: sortedProjects, setProjects } = useProjectStore()
+
+  const project = sortedProjects?.find((project) => {
+    return projectId && project?.id === String(projectId)
   })
-  console.log('data: ', data)
+
+  const [trucks, setTrucks] = useState(project?.trucks || [])
+  const isUpdating = useRef(false)
+
+  const handleTruckStatusChange = (
+    truckId: number,
+    newStatus: TRUCK_STATUS,
+  ) => {
+    isUpdating.current = true
+
+    setTrucks((prevTrucks) =>
+      prevTrucks.map((truck) =>
+        truck.id === truckId ? { ...truck, status: newStatus } : truck,
+      ),
+    )
+  }
+
+  useEffect(() => {
+    if (project) {
+      const updatedProject = { ...project, trucks }
+      const updatedProjects = sortedProjects.map((p) =>
+        p.id === updatedProject.id ? updatedProject : p,
+      )
+      setProjects(sortProjects(updatedProjects))
+
+      if (isUpdating.current === true) {
+        localStorage.setItem('projects', JSON.stringify(updatedProjects))
+      }
+    }
+  }, [trucks]) //eslint-disable-line
 
   return (
-    <div className="grid grid-cols-3 gap-8">
-      <Card className="col-span-1">
-        <CardContent className="p-6">
-          <button className="flex items-center gap-2 text-gray-600 mb-6">
-            <ArrowLeft className="w-5 h-5" />
-            <span>Voltar para projetos</span>
-          </button>
-
-          <div className="space-y-4">
-            <div className="p-4 border rounded-lg border-blue-500 bg-blue-50">
-              <h2 className="font-medium">name</h2>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      <Card className="col-span-2">
-        <CardContent className="p-6">
-          <div className="mb-8">
-            <div className="flex justify-between items-center mb-6">
-              <div>
-                <h2 className="text-2xl font-semibold">Name</h2>
-              </div>
-              <div className={`px-4 py-2 rounded-full text-white `}>
-                calculateProjectStatus(project.trucks)
-              </div>
-            </div>
+    <>
+      <div className="grid grid-cols-1 gap-0 z-10 relative">
+        <Card className="col-span-1">
+          <CardContent className="flex flex-row p-6 w-full justify-between">
+            <button
+              className="flex items-center gap-2 text-white"
+              title="Back to projects"
+            >
+              <Link to="/">
+                <ArrowLeft className="w-7 h-auto" />
+              </Link>
+            </button>
 
             <div className="space-y-4">
-              {/* {trucks.map((truck: ITruck) => (
-                <div
-                  key={truck.id}
-                  className="flex items-center justify-between p-4 border rounded-lg"
-                >
-                  <div className="flex items-center gap-3">
-                    <div
-                      className={`p-2 rounded-full ${
-                        truck.status === TRUCK_STATUS.DELAYED
-                          ? 'bg-delayed'
-                          : truck.status === TRUCK_STATUS.ARRIVED_ON_TIME
-                          ? 'bg-completed-on-time'
-                          : 'bg-in-process'
-                      }`}
-                    >
-                      <Truck
-                        className={`w-5 h-5 ${
-                          truck.status === TRUCK_STATUS.DELAYED
-                            ? 'bg-delayed'
-                            : truck.status === TRUCK_STATUS.ARRIVED_ON_TIME
-                            ? 'bg-completed-on-time'
-                            : 'bg-in-process'
-                        }`}
-                      />
-                    </div>
-                    <div>
-                      <p className="font-medium">{truck.id}</p>
-                      <p className="text-sm text-gray-500">{truck.status}</p>
-                    </div>
-                  </div>
-
-                  <select
-                    value={truck.status}
-                    className="p-2 border rounded-lg bg-gray-50"
-                  >
-                    {Object.values(TRUCK_STATUS).map((status) => (
-                      <option key={status} value={status}>
-                        {status}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              ))} */}
+              <h2 className="font-bold text-[2rem] text-white">
+                {project?.name}
+              </h2>
             </div>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+          </CardContent>
+        </Card>
+
+        <Card className="col-span-2">
+          <CardContent className="p-6">
+            <div className="mb-10">
+              <div className="space-y-4">
+                {project &&
+                  project.trucks.map((truck: ITruck) => (
+                    <div
+                      key={truck.id}
+                      className="flex items-center justify-between py-7 px-4 border rounded-2xl shadow-xl bg-white"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={cn(
+                            'p-2 rounded-full bg-process',
+                            truck.status === TRUCK_STATUS.DELAYED &&
+                              'bg-delayed',
+                            truck.status === TRUCK_STATUS.UNSCHEDULED &&
+                              'bg-unplanned-light',
+                            truck.status === TRUCK_STATUS.ARRIVED_ON_TIME &&
+                              'bg-completed',
+                          )}
+                        >
+                          <Truck
+                            className={`w-5 h-5 ${
+                              truck.status === TRUCK_STATUS.UNSCHEDULED
+                                ? 'text-process'
+                                : 'text-white'
+                            }`}
+                          />
+                        </div>
+                        <div>
+                          <p className="font-medium">{truck.driver}</p>
+                          <p className="text-sm text-gray-500">
+                            {truck.status}
+                          </p>
+                        </div>
+                      </div>
+
+                      <select
+                        value={truck.status.toLowerCase().replace(/_/g, '-')}
+                        onChange={(e) =>
+                          handleTruckStatusChange(
+                            truck.id,
+                            e.target.value
+                              .toLowerCase()
+                              .replace(/_/g, '-') as TRUCK_STATUS,
+                          )
+                        }
+                        className="p-2 border rounded-lg bg-gray-50"
+                      >
+                        {Object.entries(TRUCK_STATUS).map(([key, value]) => (
+                          <option key={key} value={value}>
+                            {value.replace(/[-_]/g, ' ')}{' '}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+      <div className="bg-primary w-full h-[13rem] absolute top-0 left-0 rounded-b-3xl z-0" />
+    </>
   )
 }

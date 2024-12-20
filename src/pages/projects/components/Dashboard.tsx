@@ -1,6 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card'
 import { IProject } from '@/data/types'
 import { useResponsive } from '@/hooks/useResponsive'
+import { useProjectStore } from '@/store/useProjectStore'
 import { cn } from '@/util/lib/utils'
 import debounce from 'lodash/debounce'
 import { Search } from 'lucide-react'
@@ -10,16 +11,14 @@ import { ProjectCard } from './Cards'
 import { SkeletonOverview } from './Skeleton'
 
 interface ProjectsDashProps {
-  projects: IProject[]
   onSelectProject?: (project: IProject) => void
   isLoading?: boolean
 }
 
-export const ProjectsDashboard = ({
-  projects,
-  isLoading,
-}: ProjectsDashProps) => {
+export const ProjectsDashboard = ({ isLoading }: ProjectsDashProps) => {
   const { isMoreThan } = useResponsive()
+  const { projects } = useProjectStore()
+
   const [searchQuery, setSearchQuery] = useState('')
   const [searchValue, setSearchValue] = useState('')
 
@@ -48,7 +47,7 @@ export const ProjectsDashboard = ({
     <div
       className={cn(
         'grid grid-cols-1 gap-0 z-10 w-full',
-        isMoreThan(1024) && 'grid-cols-3',
+        isMoreThan(1024) && 'w-[60%]',
       )}
     >
       <div className="relative m-6" hidden={isLoading}>
