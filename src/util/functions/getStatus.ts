@@ -1,8 +1,7 @@
 import { ITruck, PROJECT_STATUS, TRUCK_STATUS } from '@/data/types'
 
 export const getProjectStatus = (trucks: ITruck[]): PROJECT_STATUS => {
-  const truckStatuses = trucks.map((truck) => truck.status)
-  console.log('truckStatuses: ', truckStatuses)
+  const truckStatuses = trucks.map((truck) => truck.status.toLowerCase())
 
   if (truckStatuses.every((status) => status === TRUCK_STATUS.UNSCHEDULED)) {
     return PROJECT_STATUS.UNPLANNED

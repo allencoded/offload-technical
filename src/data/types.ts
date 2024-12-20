@@ -7,14 +7,14 @@ export enum TRUCK_STATUS {
 }
 
 export enum PROJECT_STATUS {
-  UNPLANNED = 'unplanned',
-  IN_PROGRESS = 'in-progress',
-  COMPLETED_ON_TIME = 'completed on time',
-  DELAYED = 'delayed',
+  UNPLANNED = 'Unplanned',
+  IN_PROGRESS = 'In Process',
+  COMPLETED_ON_TIME = 'Completed on Time',
+  DELAYED = 'Delayed',
 }
 
 export interface IProject {
-  id: number
+  id: number | string
   name: string
   trucks: ITruck[]
   status: PROJECT_STATUS

@@ -5,4 +5,8 @@
   :root {
     --radius: 0.5rem;
   }
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+  }
 }
