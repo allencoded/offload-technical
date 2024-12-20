@@ -51,6 +51,10 @@ Bonus Points: Use css add a bit of styling to the project view.
 
 ## Scope of the Test Performed
 
+![data access](public/readme/image1.png)
+
+![alt text](public/readme/image2.png)
+
 ### Mobile First
 
 For this test, I developed a mobile-focused version, with a responsive design for screen sizes between 725px and 375px (referencing Figma at 425px). Due to time constraints, a desktop version was not considered.
