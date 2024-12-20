@@ -16,7 +16,7 @@ export const ProjectCard = ({ project }: { project: IProject }) => {
     return (
       <section
         id={`card-${project.id}`}
-        className="rounded-2xl shadow-lg transition-colors bg-white cursor-pointer"
+        className="rounded-2xl shadow-lg transition-colors bg-white"
       >
         <div className="flex justify-between items-center px-4 pt-4">
           <div className="flex flex-row justify-between w-full">
@@ -60,7 +60,7 @@ export const ProjectCard = ({ project }: { project: IProject }) => {
   return (
     <section
       id={`card-${project.id}`}
-      className="rounded-2xl shadow-lg transition-colors bg-white cursor-pointer"
+      className="rounded-2xl shadow-lg transition-colors bg-white"
     >
       <div className="flex justify-between items-center px-4 pt-4">
         <div className="flex flex-row items-center gap-2">

@@ -1,4 +1,3 @@
-// src/store/useProjectStore.ts
 import { IProject } from '@/data/types'
 import { create } from 'zustand'
 

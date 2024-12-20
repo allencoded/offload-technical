@@ -1,4 +1,3 @@
-// src/utils/sortProjects.ts
 import { IProject, PROJECT_STATUS } from '@/data/types'
 import { getProjectStatus } from './getStatus'
 

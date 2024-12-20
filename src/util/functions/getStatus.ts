@@ -26,5 +26,5 @@ export const getProjectStatus = (trucks: ITruck[]): PROJECT_STATUS => {
     return PROJECT_STATUS.IN_PROGRESS
   }
 
-  return PROJECT_STATUS.UNPLANNED // Default case
+  return PROJECT_STATUS.UNPLANNED
 }
