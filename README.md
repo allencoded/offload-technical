@@ -1,4 +1,4 @@
-# Offload Technical 
+# Offload Technical
 
 We're excited to have you here as you take on our technical challenge. Our goal is to create an experience that mirrors real-world scenarios, giving you a glimpse into the type of work we do every day.
 
@@ -32,17 +32,19 @@ The projects overall status is determined using the following logic:
 
 3. Completed On Time - All trucks have reached the `Arrived-On-Time` status.
 
-4. DELAYED - If any of the trucks have the status `Delayed` the entire project is marked as `Delayed`. 
+4. DELAYED - If any of the trucks have the status `Delayed` the entire project is marked as `Delayed`.
 
-Your task is to build a solution that displays all the trucks and that allows the user to specifiy the status of each truck. Then in the space provided above the trucks determine the overall truck status. 
+Your task is to build a solution that displays all the trucks and that allows the user to specifiy the status of each truck. Then in the space provided above the trucks determine the overall truck status.
 
 Use the trucks found in the `/src/data/trucks.ts` file to populate the trucks for this project page.
 
 Bonus Points: Use css add a bit of styling to the project view.
 
+# Running
 
-# Get Up and Running
-
-1. Fork this repository
-2. Use npm install to install the dependencies
-3. Run the application locally with `npm run dev`
+1. Use Node>= `20`
+1. Use `npm install` to install the dependencies
+1. **Start the mock API server:**
+   - `npm install -g json-server`
+   - `json-server --watch src/data/mock.json`
+1. Run the application locally with `npm run dev`

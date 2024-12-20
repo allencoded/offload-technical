@@ -1,0 +1,86 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "Urban Navigator",
+      "trucks": [
+        {
+          "id": 1,
+          "unitNumber": 12345,
+          "driver": "John Doe",
+          "status": "Unscheduled"
+        },
+        {
+          "id": 2,
+          "unitNumber": "ABC123",
+          "driver": "Jane Smith",
+          "status": "Unscheduled"
+        },
+        {
+          "id": 3,
+          "unitNumber": 67890,
+          "driver": "Bob Johnson",
+          "status": "Unscheduled"
+        }
+      ],
+      "status": "Unscheduled"
+    },
+    {
+      "id": 2,
+      "name": "Valley Venture",
+      "trucks": [
+        {
+          "id": 4,
+          "unitNumber": 54321,
+          "driver": "Alice Brown",
+          "status": "Unscheduled"
+        },
+        {
+          "id": 5,
+          "unitNumber": "XYZ789",
+          "driver": "Charlie Davis",
+          "status": "In-Transit"
+        }
+      ],
+      "status": "In-Transit"
+    },
+    {
+      "id": 3,
+      "name": "Desert Voyager",
+      "trucks": [
+        {
+          "id": 6,
+          "unitNumber": 98765,
+          "driver": "Eve Wilson",
+          "status": "Scheduled"
+        },
+        {
+          "id": 7,
+          "unitNumber": "DEF456",
+          "driver": "Frank White",
+          "status": "Unscheduled"
+        },
+        {
+          "id": 8,
+          "unitNumber": 24680,
+          "driver": "Grace Black",
+          "status": "Delayed"
+        }
+      ],
+      "status": "Scheduled"
+    },
+    {
+      "id": 4,
+      "name": "Redwood Run",
+      "trucks": [
+        {
+          "id": 6,
+          "unitNumber": 98765,
+          "driver": "Eve Wilson",
+          "status": "Scheduled"
+        }
+      ],
+      "status": "Unscheduled"
+    }
+  ]
+}
