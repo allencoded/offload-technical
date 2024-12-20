@@ -2,12 +2,8 @@ import { Card, CardContent } from '@/components/ui/card'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { ArrowLeft } from 'lucide-react'
-import { useParams } from 'react-router-dom'
 
 export const ProjectDetail = () => {
-  const { projectId } = useParams()
-  console.log('projectId: ', projectId)
-
   const { data } = useQuery({
     queryKey: ['projects'],
     queryFn: async () => {

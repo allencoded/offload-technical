@@ -1,14 +1,5 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ProjectsList } from './pages/projects'
+import { ProjectsList } from './pages/projects/ProjectsList'
 
-const queryClient = new QueryClient()
-
-function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <ProjectsList />
-    </QueryClientProvider>
-  )
+export default function App() {
+  return <ProjectsList />
 }
-
-export default App

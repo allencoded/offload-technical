@@ -4,6 +4,7 @@ import { IProject, PROJECT_STATUS } from '@/data/types'
 import { getProjectStatus } from '@/util/functions/getStatus'
 import { ChevronRight, Truck } from 'lucide-react'
 import { useMemo } from 'react'
+import { Link } from 'react-router'
 
 export const ProjectCard = ({ project }: { project: IProject }) => {
   const status = useMemo(
@@ -44,10 +45,12 @@ export const ProjectCard = ({ project }: { project: IProject }) => {
         <Separator className="my-2 bg-unplanned-lightest h-[2px]" />
 
         <div className="flex justify-between items-start mb-3 px-4 pb-4 pt-3">
-          <span className="text-[16px] font-medium text-delayed">
-            View details
-          </span>
-          <ChevronRight className="w-5 h-5 text-delayed" />
+          <Link to={`/projects/${project.id}`}>
+            <span className="text-[16px] font-medium text-delayed">
+              View details
+            </span>
+            <ChevronRight className="w-5 h-5 text-delayed" />
+          </Link>
         </div>
       </section>
     )

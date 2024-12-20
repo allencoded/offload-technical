@@ -5,8 +5,9 @@ import { cn } from '@/util/lib/utils'
 import debounce from 'lodash/debounce'
 import { Search } from 'lucide-react'
 import { useMemo, useState } from 'react'
-import { ProjectCard } from './ProjectCards'
-import { SkeletonOverview } from './ProjectSkeleton'
+import { Outlet } from 'react-router'
+import { ProjectCard } from './Cards'
+import { SkeletonOverview } from './Skeleton'
 
 interface ProjectsDashProps {
   projects: IProject[]
@@ -70,6 +71,7 @@ export const ProjectsDashboard = ({
           </div>
         </CardContent>
       </Card>
+      <Outlet />
     </div>
   )
 }
